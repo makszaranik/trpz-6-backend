@@ -62,12 +62,10 @@ public class TestStageExecutor extends DockerJobRunner implements StageExecutor 
         if (statusCode == 0) {
             submission.setStatus(SubmissionEntity.Status.ACCEPTED);
             submission.setLogs(logs);
-            submissionService.save(submission);
             chain.doNext(submission, chain);
         } else {
             submission.setStatus(SubmissionEntity.Status.WRONG_ANSWER);
             submission.setLogs(logs);
-            submissionService.save(submission);
         }
     }
 

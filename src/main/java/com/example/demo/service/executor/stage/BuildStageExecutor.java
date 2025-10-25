@@ -51,12 +51,10 @@ public class BuildStageExecutor extends DockerJobRunner implements StageExecutor
         if (statusCode == 0) {
             submission.setStatus(SubmissionEntity.Status.COMPILATION_SUCCESS);
             submission.setLogs(logs);
-            submissionService.save(submission);
             chain.doNext(submission, chain);
         } else {
             submission.setStatus(SubmissionEntity.Status.COMPILATION_ERROR);
             submission.setLogs(logs);
-            submissionService.save(submission);
         }
     }
 }
